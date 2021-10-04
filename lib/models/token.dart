@@ -25,6 +25,7 @@ class Token {
   Token.fromJson(Map<String, dynamic> json) {
     token = json['token'];
     expiration = json['expiration'];
+    user = User.fromJson(json["user"]);
   }
 
   Map<String, dynamic> toJson() {

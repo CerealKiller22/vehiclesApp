@@ -175,12 +175,12 @@ class _LoginScreenState extends State<LoginScreen> {
       "password": _password,
     };
 
-    var url = Uri.parse("${Constans.apiUrl}/api/Account/CreateToken");
+    var url = Uri.parse('${Constans.apiUrl}/api/Account/CreateToken');
     var response = await http.post(
       url,
       headers: {
-        "content-type" : "application/json",
-        "accept" : "application/json"
+        'content-type' : 'application/json',
+        'accept' : 'application/json',
       },
       body: jsonEncode(request),
     );

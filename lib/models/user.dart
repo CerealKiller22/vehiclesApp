@@ -49,19 +49,19 @@ class User {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['firstName'] = this.firstName;
-    data['lastName'] = this.lastName;
-    data['documentType'] = this.documentType.toJson();
-    data['document'] = this.document;
-    data['address'] = this.address;
-    data['imageId'] = this.imageId;
-    data['imageFullPath'] = this.imageFullPath;
-    data['userType'] = this.userType;
-    data['fullName'] = this.fullName;
-    data['id'] = this.id;
-    data['userName'] = this.userName;
-    data['email'] = this.email;
-    data['phoneNumber'] = this.phoneNumber;
+    data['firstName'] = firstName;
+    data['lastName'] = lastName;
+    data['documentType'] = documentType.toJson();
+    data['document'] = document;
+    data['address'] = address;
+    data['imageId'] = imageId;
+    data['imageFullPath'] = imageFullPath;
+    data['userType'] = userType;
+    data['fullName'] = fullName;
+    data['id'] = id;
+    data['userName'] = userName;
+    data['email'] = email;
+    data['phoneNumber'] = phoneNumber;
     return data;
   }
 }
