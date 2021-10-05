@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vehicles_app/models/token.dart';
 import 'package:vehicles_app/screens/login_screen.dart';
+import 'package:vehicles_app/screens/procedures_screen.dart';
 
 class HomeScreen extends StatefulWidget {
 final Token token;
@@ -27,20 +28,20 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _getBody() {
     return Container(      
-      margin: EdgeInsets.all(30),
+      margin: const EdgeInsets.all(30),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(150),
             child: FadeInImage(
-            placeholder: AssetImage("assets/vehicles_logo.png"), 
+            placeholder: const AssetImage("assets/vehicles_logo.png"), 
             image: NetworkImage(widget.token.user.imageFullPath),
             height: 300,
             fit: BoxFit.cover,
             ),
           ),
-          SizedBox(height: 30,),
+          const SizedBox(height: 30,),
           Center(
             child: Text(
               'Bienvenid@ ${widget.token.user.fullName}',
@@ -73,7 +74,14 @@ class _HomeScreenState extends State<HomeScreen> {
          ListTile(
             leading: Icon(Icons.precision_manufacturing),
             title: const Text('Procedimientos'),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context, 
+                MaterialPageRoute( 
+                  builder: (context) => ProceduresScreen(token: widget.token,)
+                )
+              );
+            },
           ),
           ListTile(
             leading: Icon(Icons.badge),
