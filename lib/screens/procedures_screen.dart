@@ -7,6 +7,7 @@ import 'package:vehicles_app/helpers/constans.dart';
 import 'package:vehicles_app/models/procedure.dart';
 import 'package:vehicles_app/models/token.dart';
 import "package:http/http.dart" as http;
+import 'package:vehicles_app/screens/procedure_screen.dart';
 
 class ProceduresScreen extends StatefulWidget {
   final Token token;
@@ -31,16 +32,24 @@ class _ProceduresScreenState extends State<ProceduresScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:  AppBar(
-        title:  Text("Procedimientos"),
+        title:  const Text("Procedimientos"),
       ),
       body: Center(
         child: _showLoader ? LoaderComponent(text:"Por favor espere..." ,) : _getContent(),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          print("Estoy presionando el boton");
+          Navigator.push(
+                context, 
+                MaterialPageRoute( 
+                  builder: (context) => ProcedureScreen(
+                    token: widget.token, 
+                    procedure: Procedure(id: 0, description: "", price: 0), 
+                  )
+                )
+              );
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
@@ -101,24 +110,34 @@ class _ProceduresScreenState extends State<ProceduresScreen> {
       children: _procedures.map((e) {
         return Card(
           child: InkWell(
-            onTap: () {},
-            child: Container(
-              margin: const EdgeInsets.all(10),
-              padding: const EdgeInsets.all(5),
-              child:  Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        e.description, 
-                        style: TextStyle(
-                          fontSize: 16
-                        ),
+            onTap: () {
+              Navigator.push(
+                context, 
+                MaterialPageRoute( 
+                  builder: (context) => ProcedureScreen(
+                    token: widget.token, 
+                    procedure: e, 
+                  )
+                )
+              ); 
+            },
+          child: Container(
+            margin: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(5),
+            child:  Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      e.description, 
+                      style: TextStyle(
+                        fontSize: 16
                       ),
-                      Icon(Icons.arrow_forward_ios)
-                    ],
-                  ),
+                    ),
+                    Icon(Icons.arrow_forward_ios)
+                  ],
+                ),
                   SizedBox(height: 5,),
                   Row(
                     children: [
